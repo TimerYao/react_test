@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>react-demo</title>
+		<script type="text/javascript" src="../js/react.js" ></script>
+		<!--这是react的核心库，必加载。-->
+		<script type="text/javascript" src="../js/react-dom.js" ></script>
+		<!--提供与DOM相关的功能，必加载。-->
+		<script type="text/javascript" src="../js/browser.min.js" ></script>
+		<!--将JAX语法转化为浏览器识别的javascript语法，-->
+	</head>
+	<body>
+		<div id="example"></div>
+	    <script type="text/babel">
+			var HelloMessage = React.createClass({
+				render: function() {
+					return <h1>Hello {this.props.name},className为{this.props.className},data-on为{this.props.dataOn}</h1>;
+				}
+				//用this.prop对属性值进行读取
+			});
+			ReactDOM.render(
+				<HelloMessage name="world"  className="class" dataOn="on"/>,
+				//name属性，className属性，dataOn属性
+				document.getElementById('example')
+			);
+	    </script>    
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>react-demo</title>
+		<script type="text/javascript" src="../js/react.js" ></script>
+		<!--这是react的核心库，必加载。-->
+		<script type="text/javascript" src="../js/react-dom.js" ></script>
+		<!--提供与DOM相关的功能，必加载。-->
+		<script type="text/javascript" src="../js/browser.min.js" ></script>
+		<!--将JAX语法转化为浏览器识别的javascript语法，-->
+	</head>
+	<body>
+		<div id="example"></div>
+	    <script type="text/babel">
+			var HelloMessage = React.createClass({
+	  			getInitialState: function () {
+	    			return {
+	      				opacity: 1.0
+	      				//默认state
+	    			};
+	  			},
+	  			componentDidMount: function () {
+	    			this.timer = setInterval(function () {
+	      				var opacity = this.state.opacity;
+	      				opacity -= .05;
+	      				if (opacity < 0.1) {
+					       opacity = 1.0;
+					    }
+	      				this.setState({
+	        				opacity: opacity
+	      				});
+	    			}.bind(this), 100);
+	    			//定时器修改state，修改opacity
+	  			},
+	 			//重新渲染
+	 			render: function () {
+	    			return (
+				        <div style={{opacity: this.state.opacity}}>
+				        	Hello {this.props.name}
+				        </div>
+	    			);
+	  			}
+			});
+			ReactDOM.render(
+			    <HelloMessage name="world" />,
+			    document.getElementById('example')
+			);
+	    </script>    
+	</body>
+</html>

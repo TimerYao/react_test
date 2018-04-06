@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>react-demo</title>
+		<script type="text/javascript" src="../js/react.js" ></script>
+		<!--这是react的核心库，必加载。-->
+		<script type="text/javascript" src="../js/react-dom.js" ></script>
+		<!--提供与DOM相关的功能，必加载。-->
+		<script type="text/javascript" src="../js/browser.min.js" ></script>
+		<!--将JAX语法转化为浏览器识别的javascript语法，-->
+	</head>
+	<body>
+		<div id="example"></div>
+	    <script type="text/babel">
+		    var arr = [
+			    <h1>Hello,China</h1>,
+			    <h2>Hello,World</h2>,
+			];//数组
+			ReactDOM.render(
+			    <div>{arr}</div>,
+			    //展开插入到模板
+			    document.getElementById('example')
+			);
+	    </script>    
+	</body>
+</html>

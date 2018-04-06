@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>react-demo</title>
+		<script type="text/javascript" src="../js/react.js" ></script>
+		<!--这是react的核心库，必加载。-->
+		<script type="text/javascript" src="../js/react-dom.js" ></script>
+		<!--提供与DOM相关的功能，必加载。-->
+		<script type="text/javascript" src="../js/browser.min.js" ></script>
+		<!--将JAX语法转化为浏览器识别的javascript语法，-->
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	</head>
+	<body>
+		<div id="example"></div>
+        <script type="text/babel">
+        var UserGist = React.createClass({
+	        getInitialState: function() {
+	            return {
+	            	username: '',
+	            	lastGistUrl: ''
+	            };
+	        },
+
+	        componentDidMount: function() {
+	            this.serverRequest = $.get(this.props.source, function (result) {
+	            	var lastGist = result[0];
+		            this.setState({
+		                username: lastGist.owner.login,
+		                lastGistUrl: lastGist.html_url
+		            });
+	            }.bind(this));
+	        },
+	        componentWillUnmount: function() {
+	            this.serverRequest.abort();
+	        },
+
+        	render: function() {
+	            return (
+		            <div>
+		                {this.state.username} 用户最新的 Gist 共享地址：
+		                <a href={this.state.lastGistUrl}>{this.state.lastGistUrl}</a>
+		            </div>
+	            );
+        	}
+      	});
+
+        ReactDOM.render(
+        	<UserGist source="https://api.github.com/users/octocat/gists" />,
+        	document.getElementById('example')
+        );
+    </script> 
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>react-demo</title>
+		<script type="text/javascript" src="../js/react.js" ></script>
+		<!--这是react的核心库，必加载。-->
+		<script type="text/javascript" src="../js/react-dom.js" ></script>
+		<!--提供与DOM相关的功能，必加载。-->
+		<script type="text/javascript" src="../js/browser.min.js" ></script>
+		<!--将JAX语法转化为浏览器识别的javascript语法，-->
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+	    	var HelloMessage = React.createClass({
+	        	getInitialState: function() {
+	            	return {value: 'Hello World!'};
+	            	//默认初始化
+	       	    },
+	        	handleChange: function(event) {
+	            	this.setState({value: event.target.value});
+	            	//修改状态获取input的value
+	        	},
+	        	render: function() {
+	            	var value = this.state.value;
+	            	return <div>
+		                    <input type="text" value={value} onChange={this.handleChange} /> 
+		                    <h4>{value}</h4>
+		                </div>;
+	       		 }
+	    	});
+	    	ReactDOM.render(
+	      		<HelloMessage />,
+	      		document.getElementById('example')
+	    	);
+		</script>    
+	</body>
+</html>

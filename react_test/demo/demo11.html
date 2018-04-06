@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>react-demo</title>
+		<script type="text/javascript" src="../js/react.js" ></script>
+		<!--这是react的核心库，必加载。-->
+		<script type="text/javascript" src="../js/react-dom.js" ></script>
+		<!--提供与DOM相关的功能，必加载。-->
+		<script type="text/javascript" src="../js/browser.min.js" ></script>
+		<!--将JAX语法转化为浏览器识别的javascript语法，-->
+	</head>
+	<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		var LikeButton = React.createClass({
+			getInitialState: function() {
+				return {liked: false};
+				//初始化状态
+			},
+			handleClick: function(event) {
+				this.setState({liked: !this.state.liked});
+				//click方法修改state
+			},
+			render: function() {
+				var text = this.state.liked ? '喜欢' : '不喜欢';
+				return (
+			  		<p onClick={this.handleClick}>
+			    		You {text} this. Click to toggle.
+			  		</p>
+				);
+			}
+		});
+		
+		ReactDOM.render(
+			<LikeButton />,
+			document.getElementById('example')
+		);
+	</script>    
+	</body>
+</html>
